@@ -37,7 +37,7 @@ public class RandomBoxSpawner : MonoBehaviour
 
             // yield return null;//waits for a single frame
             //yield return new WaitForFixedUpdate();//waits for physic update
-    }
+        }
     }
     
 }
