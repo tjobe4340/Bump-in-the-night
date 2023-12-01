@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Hunger : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Hunger : MonoBehaviour
     [SerializeField] int points = 5;
     [SerializeField] Text scoreText; // Reference to the Text UI element.
     [SerializeField] AudioClip pickupSound;
-    [SerializeField] Text winText;
+    [SerializeField] TextMeshProUGUI winText;
     private AudioSource audioSource;
 
     
