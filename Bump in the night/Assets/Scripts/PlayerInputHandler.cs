@@ -6,13 +6,13 @@ public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] Movement movement;
     PointsHandler pointsHandler;
-    ProjectileThrower projectileThrower;
+    //ProjectileThrower projectileThrower;
 
     void Awake(){
         //movement = GetComponent<Movement>();
         //pointsHandler = GameObject.Find("PointsHandler").GetComponent<PointsHandler>();// slow
         //pointsHandler = GameObject.FindGameObjectWithTag("PointsHandler").GetComponent<PointsHandler>();// good
-        projectileThrower = GetComponent<ProjectileThrower>();
+        //projectileThrower = GetComponent<ProjectileThrower>();
     }
 
     void Start(){
@@ -57,8 +57,8 @@ public class PlayerInputHandler : MonoBehaviour
         // pointsHandler.AddDistance(vel.magnitude * Time.deltaTime);
 
         //projectiles
-        if(Input.GetKeyDown(KeyCode.E)){
-            projectileThrower.Throw(Camera.main.ScreenToWorldPoint(Input.mousePosition));//shoot towards mouse pointer
-        }
+        // if(Input.GetKeyDown(KeyCode.E)){
+        //     projectileThrower.Throw(Camera.main.ScreenToWorldPoint(Input.mousePosition));//shoot towards mouse pointer
+        // }
     }
 }

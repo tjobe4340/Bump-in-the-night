@@ -4,45 +4,58 @@ using System.Collections.Generic;
 
 public class ShortRoomGenerator : MonoBehaviour
 {
-    public GameObject shortRoomPrefab; // Assign your ShortRoom prefab in the Inspector
-    public int numberOfRooms = 5; // Number of ShortRooms to generate
-    public float placementRadius = 10f; // Radius within which to place the rooms
+    public GameObject shortRoomPrefab;
+    public int numberOfRooms = 5;
+    public float placementRadius = 10f;
 
-    private List<GameObject> placedRooms = new List<GameObject>();
+    private Queue<GameObject> roomPool = new Queue<GameObject>();
 
     void Start()
     {
+        InitializeRoomPool();
         GenerateRooms();
+    }
+
+    void InitializeRoomPool()
+    {
+        for (int i = 0; i < numberOfRooms; i++)
+        {
+            GameObject room = Instantiate(shortRoomPrefab);
+            room.SetActive(false);
+            roomPool.Enqueue(room);
+        }
     }
 
     void GenerateRooms()
     {
-        for (int i = 0; i < numberOfRooms; i++)
+        foreach (GameObject room in roomPool)
         {
-            GameObject newRoom = Instantiate(shortRoomPrefab);
-            newRoom.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f)); // Random Z rotation
+            room.SetActive(false);
+        }
+
+        foreach (GameObject room in roomPool)
+        {
+            room.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
             Vector3 randomPosition;
             bool positionFound;
 
-            // Try to find a non-overlapping position
             do
             {
                 randomPosition = new Vector3(Random.Range(-placementRadius, placementRadius), Random.Range(-placementRadius, placementRadius), 0);
-                newRoom.transform.position = randomPosition;
-
-                positionFound = !IsOverlapping(newRoom);
+                room.transform.position = randomPosition;
+                positionFound = !IsOverlapping(room);
             } while (!positionFound);
 
-            placedRooms.Add(newRoom);
+            room.SetActive(true);
         }
     }
 
     bool IsOverlapping(GameObject room)
     {
-        foreach (GameObject otherRoom in placedRooms)
+        foreach (GameObject otherRoom in roomPool)
         {
-            if (otherRoom == room)
+            if (otherRoom == room || !otherRoom.activeSelf)
                 continue;
 
             Collider[] roomColliders = room.GetComponentsInChildren<Collider>();
