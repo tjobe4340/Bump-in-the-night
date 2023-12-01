@@ -6,11 +6,12 @@ TagManager:
   tags:
   - PointsHandler
   - Food
+  - Particle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - unWalkable
   - Water
   - UI
   - 

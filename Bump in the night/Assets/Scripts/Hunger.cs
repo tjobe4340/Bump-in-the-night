@@ -10,6 +10,7 @@ public class Hunger : MonoBehaviour
     [SerializeField] int points = 5;
     [SerializeField] Text scoreText; // Reference to the Text UI element.
     [SerializeField] AudioClip pickupSound;
+    [SerializeField] Text winText;
     private AudioSource audioSource;
 
     
@@ -18,6 +19,13 @@ public class Hunger : MonoBehaviour
         if (scoreText != null){
             scoreText.text = "Food: " + points.ToString();
         }
+        if (GameObject.FindGameObjectsWithTag("Food").Length == 0)
+            {
+                if (winText != null) {
+                    winText.text = "You Win!";
+                }
+                StartCoroutine(LoadMainMenuAfterDelay());
+            }
     }
     public void Decrese(){
         points--;
@@ -25,6 +33,9 @@ public class Hunger : MonoBehaviour
     void Start(){
         InvokeRepeating("Decrese",0f,3f);
         audioSource = GetComponent<AudioSource>();
+        if (winText != null){
+             winText.text = ""; // Initialize win text to be empty
+        }
     }
     void Update(){
         if(points<=0){
@@ -32,6 +43,13 @@ public class Hunger : MonoBehaviour
         }
         UpdateScoreUI();
     }
+
+    IEnumerator LoadMainMenuAfterDelay()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Food")){
@@ -39,7 +57,8 @@ public class Hunger : MonoBehaviour
             audioSource.PlayOneShot(pickupSound);
             // Update the UI Text element with the current score.
             UpdateScoreUI();
-        }
+            
     }
+}
 }
 

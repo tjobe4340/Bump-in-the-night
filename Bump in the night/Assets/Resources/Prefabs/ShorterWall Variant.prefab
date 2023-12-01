@@ -67,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 743935195723732207, guid: a8ff0d9c31f3a10428782d044816307f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1445274178530909805}
+    - targetCorrespondingSourceObject: {fileID: 743935195723732207, guid: a8ff0d9c31f3a10428782d044816307f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 792198522061248482}
   m_SourcePrefab: {fileID: 100100000, guid: a8ff0d9c31f3a10428782d044816307f, type: 3}
 --- !u!1 &1255124849114747396 stripped
 GameObject:
@@ -88,6 +91,33 @@ MonoBehaviour:
   wallSpriteRenderer: {fileID: 7405076596171685185}
   hitColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   colorChangeDuration: 10
+--- !u!50 &792198522061248482
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255124849114747396}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!212 &7405076596171685185 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 9078686847430376362, guid: a8ff0d9c31f3a10428782d044816307f, type: 3}
